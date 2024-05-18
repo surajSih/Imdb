@@ -41,14 +41,14 @@ export default function App() {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://www.omdbapi.com/?apikey=cd3cb347&s=${movieData}`
+        `https://www.omdbapi.com/?apikey=cd3cb347&s=${movieData}`
       ).then((data) => data.json());
 
       // Fetch detailed information for each movie to get the IMDb rating
       const detailedResults = await Promise.all(
         response.Search.map(async (movie) => {
           const movieDetails = await fetch(
-            `http://www.omdbapi.com/?apikey=cd3cb347&i=${movie.imdbID}`
+            `https://www.omdbapi.com/?apikey=cd3cb347&i=${movie.imdbID}`
           ).then((data) => data.json());
           return { ...movie, imdbRating: movieDetails.imdbRating };
         })
